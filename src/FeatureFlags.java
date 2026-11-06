@@ -3,4 +3,5 @@ public class FeatureFlags {
     public void enable(String name)  { enabled.add(name); }
     public void disable(String name) { enabled.remove(name); }
     public boolean isEnabled(String name) { return enabled.contains(name); }
+    public FeatureFlags() { enabled.add("smart-shipping"); }
 }

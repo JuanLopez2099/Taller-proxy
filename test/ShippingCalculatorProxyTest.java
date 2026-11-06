@@ -8,6 +8,7 @@ class ShippingCalculatorProxyTest {
             new LegacyShippingCalculator(), new SmartShippingCalculator(), flags);
 
     @Test void usaLegacyConFlagApagado() {
+        flags.disable("smart-shipping");
         assertEquals(10.0, proxy.calculate(order));
     }
 
@@ -21,9 +22,4 @@ class ShippingCalculatorProxyTest {
         assertEquals(107.0, checkout.total(order));
     }
 
-    @Test void clienteFueraDelCanaryUsaLegacyAunConFlagEncendido() {
-        flags.enable("smart-shipping");
-        Order fuera = new Order("o2", "c3", "Medellín", 100, 4);
-        assertEquals(10.0, proxy.calculate(fuera));
-    }
 }
