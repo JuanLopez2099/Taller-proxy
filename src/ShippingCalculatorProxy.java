@@ -13,7 +13,8 @@ public class ShippingCalculatorProxy implements ShippingCalculator {
 
     @Override
     public double calculate(Order order) {
-        return flags.isEnabled("smart-shipping")
+        boolean canary = Math.abs(order.customerId().hashCode()) % 100 < 20;
+        return flags.isEnabled("smart-shipping") && canary
                 ? smart.calculate(order)
                 : legacy.calculate(order);
     }
